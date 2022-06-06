@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import heros from "@assets/data/index";
 import statsContext from "../../services/contexts/stats";
 import SFiltre from "./style";
 import dataUnivers from "../UniversData/index";
@@ -22,28 +23,27 @@ function Filtre() {
   } = useContext(statsContext);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/heroes").then(({ data }) => {
-      setHeroes(
-        data.filter((hero) => {
-          const publisher = hero.biography.publisher || "";
-          const categA = [
-            "Marvel Comics",
-            "DC Comics",
-            "George Lucas",
-            "Shueisha",
-          ];
-          if (dataUnivers[univers].categ === "autre") {
-            return !categA.some((cat) => {
-              return publisher === cat;
-            });
-          }
-          return (
-            publisher === dataUnivers[univers].categ ||
-            publisher.toLowerCase().includes(dataUnivers[univers].categ)
-          );
-        })
-      );
-    });
+    // axios.get("http://localhost:5000/heroes").then(({ data }) => {
+    setHeroes(
+      heros.filter((hero) => {
+        const publisher = hero.biography.publisher || "";
+        const categA = [
+          "Marvel Comics",
+          "DC Comics",
+          "George Lucas",
+          "Shueisha",
+        ];
+        if (dataUnivers[univers].categ === "autre") {
+          return !categA.some((cat) => {
+            return publisher === cat;
+          });
+        }
+        return (
+          publisher === dataUnivers[univers].categ ||
+          publisher.toLowerCase().includes(dataUnivers[univers].categ)
+        );
+      })
+    );
   }, []);
 
   useEffect(() => {

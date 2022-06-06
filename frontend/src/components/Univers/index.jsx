@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import heros from "@assets/data/index";
 import statsContext from "../../services/contexts/stats";
 import Filtre from "../Filtre";
 import Carousel from "../Carousel";
@@ -15,9 +16,8 @@ export default function Univers() {
     useContext(statsContext);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/heroes").then(({ data }) => {
-      setHeroes(data);
-    });
+    // axios.get("http://localhost:5000/heroes").then(({ data }) => {
+    setHeroes(heros);
   }, []);
 
   return (
