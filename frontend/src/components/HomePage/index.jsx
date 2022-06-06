@@ -6,9 +6,7 @@ export default function HomePage() {
   return (
     <main>
       <SHomePageHeader />
-      <SHomePage>
-        <Jarvis />
-      </SHomePage>
+      <SHomePage>{/* <Jarvis /> */}</SHomePage>
     </main>
   );
 }

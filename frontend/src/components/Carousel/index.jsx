@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import dataUnivers from "../UniversData";
+import heros from "@assets/data/index"
 import SCarousel from "./style";
 
 export default function Carousel() {
@@ -9,9 +10,9 @@ export default function Carousel() {
   const [position, setPosition] = useState(0);
   const { univers } = useParams();
   useEffect(() => {
-    axios.get("http://localhost:5000/heroes").then(({ data }) => {
+    // axios.get("http://localhost:5000/heroes").then(({ data }) => {
       setImages(
-        data
+        heros
           .filter(({ biography }) => {
             const { publisher } = biography;
             const categA = [
@@ -30,7 +31,6 @@ export default function Carousel() {
           })
           .slice(0, 24)
       );
-    });
   }, []);
   const prevSlide = () => {
     if (position === 0) return;
